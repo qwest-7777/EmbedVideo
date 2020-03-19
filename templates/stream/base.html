@@ -1,0 +1,35 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+
+{% include 'stream/includes/head.html' %}
+
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  {% include 'stream/includes/header.html' %}
+
+    <!-- Sidebar -->
+  {% include 'stream/includes/sidebar.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% include 'stream/includes/footer.html' %}
+
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+{% include 'stream/includes/plugins.html' %}
+
+</body>
+</html>

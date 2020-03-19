@@ -1,0 +1,198 @@
+{% load static %}
+{% load embed_video_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+   
+   {% include 'stream-site/includes/head.html' %}
+
+
+   <body id="page-top">
+      <nav class="navbar navbar-expand navbar-light bg-white static-top osahan-nav sticky-top">
+         &nbsp;&nbsp;&nbsp;&nbsp;
+         <a class="navbar-brand mr-1" href="{% url 'index' %}"><img class="img-fluid" width="100px" alt="" src="{% static 'img/caravan-logo.png' %}"></a>
+         <!-- Navbar Search -->
+         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-5 my-2 my-md-0 osahan-navbar-search">
+            <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search for...">
+               <div class="input-group-append">
+                  <button class="btn btn-light" type="button">
+                  <i class="fas fa-search"></i> 
+                  </button>
+               </div>
+            </div>
+         </form>
+      </nav>
+      <div id="wrapper">
+         <div id="content-wrapper">
+            <div class="container-fluid pb-0">
+               <div class="top-mobile-search">
+                  <div class="row">
+                     <div class="col-md-12">   
+                        <form class="mobile-search">
+                           <div class="input-group">
+                             <input type="text" placeholder="Search for..." class="form-control">
+                               <div class="input-group-append">
+                                 <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                               </div>
+                           </div>
+                        </form>   
+                     </div>
+                  </div>
+               </div>
+               <div class="top-category section-padding mb-4">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div  class="owl-carousel owl-carousel-category">
+                           <div class="item">
+                              <div class="category-item">
+                                 <a href="#">
+                                    <img class="img-fluid"  src="{% static 'img/banner1.png' %}" alt="">
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="item">
+                              <div class="category-item">
+                                 <a href="#">
+                                    <img class="img-fluid" src="{% static 'img/banner2.png' %}" alt="">
+                                 </a>
+                              </div>
+                           </div>
+                           <div class="item">
+                              <div class="category-item">
+                                 <a href="#">
+                                    <img class="img-fluid" src="{% static 'img/banner3.png' %}" alt="">
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <hr>
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="main-title">
+                           <div class="btn-group float-right right-action">
+                              <a href="#" class="right-action-link text-gray" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Sort by <i class="fa fa-caret-down" aria-hidden="true"></i>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                 <a class="dropdown-item" href="#"><i class="fas fa-fw fa-star"></i> &nbsp; Top Rated</a>
+                                 <a class="dropdown-item" href="#"><i class="fas fa-fw fa-signal"></i> &nbsp; Viewed</a>
+                                 <a class="dropdown-item" href="#"><i class="fas fa-fw fa-times-circle"></i> &nbsp; Close</a>
+                              </div>
+                           </div>
+                           <div class="main-title-box">
+                              <h6>Latest Videos</h6>
+                              <a href="{% url 'all_videos_date' %}">
+                                 <button class="btn-more">See all videos</button>
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     {% for video in video_list %}
+                     
+                     <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="video-card">
+                           <div class="video-card-image--fit">
+                              {% video video.url as my_video %}
+                              <a class="play-icon" href="{% url 'video_detail' video.id %}"><i class="fas fa-play-circle"></i></a>
+                              <figure class="img-item">
+                                 <a href="#"><img  src="{{ my_video.thumbnail  }}" alt=""></a>
+                              </figure>
+                              
+                              <div class="time">{{ video.duration }}</div>
+                              {% endvideo %}
+                           </div>
+                           <div class="video-card-body">
+                              <div class="video-title">
+                                 <a href="#">{{ video.title }}</a>
+                              </div>
+                              <div class="video-page text-success">
+                                 {{ video.category.name }}  <a title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></a>
+                              </div>
+                              <div class="video-view">
+                                 {{ video.views }} &nbsp;<i class="fas fa-calendar-alt"></i> 
+                                 {{ video.created|timesince }} ago
+                              </div>
+                           </div>
+                           
+                        </div>
+                     </div>
+
+                     {% endfor %}
+
+                     
+                  </div>
+               </div>
+               <hr class="mt-0">
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="main-title">
+                           <div class="btn-group float-right right-action">
+                              <a href="#" class="right-action-link text-gray" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Sort by <i class="fa fa-caret-down" aria-hidden="true"></i>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                 <a class="dropdown-item" href="#"><i class="fas fa-fw fa-star"></i> &nbsp; Top Rated</a>
+                                 <a class="dropdown-item" href="{% url 'view_order'%}"><i class="fas fa-fw fa-signal"></i> &nbsp; Viewed</a>
+                                 <a class="dropdown-item" href="#"><i class="fas fa-fw fa-times-circle"></i> &nbsp; Close</a>
+                              </div>
+                           </div>
+                              <div class="main-title-box">
+                              <h6>Popular Videos</h6>
+                              <a href="{% url 'all_videos_popular' %}">
+                                 <button class="btn-more">See all videos</button>
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+
+                        {% for video in sort_list %}
+                        {% video video.url as my_video %}
+
+                     <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="video-card">
+                           <div class="video-card-image--fit">
+                              <a class="play-icon" href="{% url 'video_detail' video.id %}"><i class="fas fa-play-circle"></i></a>
+                              <a href="#"><img class="img-fluid" src="{{ my_video.thumbnail }}" alt=""></a>
+                              <div class="time">{{ video.duration }}</div>
+                           </div>
+                           <div class="video-card-body">
+                              <div class="video-title">
+                                 <a href="{% url 'video_detail' video.id %}">{{ video.title }}</a>
+                              </div>
+                              <div class="video-page text-danger">
+                                 {{ video.category.name }}  <a title="" data-placement="top" data-toggle="tooltip" href="#" data-original-title="Unverified"><i class="fas fa-frown text-danger"></i></a>
+                              </div>
+                              <div class="video-view">
+                                 {{ video.views }} views &nbsp;<i class="fas fa-calendar-alt"></i> {{ video.created|timesince }}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     {% endvideo %}
+                     {% endfor %}
+                     
+                     </div>
+               </div>
+            </div>
+            <!-- /.container-fluid -->
+            <!-- Sticky Footer -->
+            
+            {% include 'stream-site/includes/footer.html' %}
+
+         </div>
+         <!-- /.content-wrapper -->
+      </div>
+      <!-- /#wrapper -->
+      
+      {% include 'stream-site/includes/plugins.html' %}
+
+      
+   </body>
+</html>
